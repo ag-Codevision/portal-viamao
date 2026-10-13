@@ -1,0 +1,187 @@
+import type {
+  Article,
+  City,
+  Company,
+  Episode,
+  Job,
+  LiveChannel,
+  Program,
+} from "@/types";
+export const city: City = {
+  id: "city-viamao",
+  slug: "viamao",
+  name: "Viamão",
+  stateCode: "RS",
+  timezone: "America/Sao_Paulo",
+};
+export const demoDate = "2026-10-12";
+export const demoNow = "2026-10-12T21:20:00Z";
+const programSeed = [
+  [
+    "entre-aguas",
+    "Entre águas e histórias",
+    "Documentários",
+    "Uma viagem imaginada pelas paisagens de Itapuã e pelas memórias de quem chama Viamão de casa.",
+    "/images/hero/slide-1-entre-aguas.jpg",
+    42,
+  ],
+  [
+    "viamao-em-pauta",
+    "Viamão em pauta",
+    "Jornalismo",
+    "Uma proposta de jornal local com espaço para ouvir a comunidade e entender o cotidiano.",
+    "/images/hero/slide-2-viamao-pauta.jpg",
+    30,
+  ],
+  [
+    "gente-daqui",
+    "Gente daqui",
+    "Histórias de Viamão",
+    "Encontros fictícios com pessoas que transformam pequenos gestos em grandes histórias.",
+    "/images/hero/slide-3-gente-daqui.jpg",
+    24,
+  ],
+  [
+    "sabores-da-nossa-terra",
+    "Sabores da nossa terra",
+    "Cultura",
+    "Receitas, afetos e tradições em uma série demonstrativa sobre a cultura à mesa.",
+    "/images/hero/slide-4-sabores-terra.jpg",
+    28,
+  ],
+  [
+    "caminhos-do-sul",
+    "Caminhos do sul",
+    "Documentários",
+    "Um olhar poético sobre a natureza, os caminhos e as paisagens do nosso território.",
+    "/images/hero/slide-5-caminhos-sul.jpg",
+    36,
+  ],
+  [
+    "palco-aberto",
+    "Palco aberto",
+    "Cultura",
+    "Um espaço imaginado para a música, a arte e as expressões culturais da cidade.",
+    "/images/hero/slide-6-palco-aberto.jpg",
+    22,
+  ],
+] as const;
+export const programs: Program[] = programSeed.map(
+  ([slug, title, category, synopsis, coverPath, durationMinutes], i) => ({
+    id: `program-${i}`,
+    cityId: city.id,
+    slug,
+    title,
+    category,
+    synopsis,
+    coverPath,
+    durationMinutes,
+    status: "published",
+    featured: i === 0,
+  }),
+);
+export const episodes: Episode[] = programs.flatMap((p) =>
+  [1, 2].map((n) => ({
+    id: `${p.id}-episode-${n}`,
+    programId: p.id,
+    slug: `${p.slug}-${n}`,
+    title: n === 1 ? "Um novo olhar" : "Memórias e caminhos",
+    synopsis: `Episódio ${n} de ${p.title}. Conteúdo fictício para explorar a experiência do portal.`,
+    durationSeconds: p.durationMinutes * 60,
+    videoProvider: "demo",
+    videoExternalId: null,
+    status: "published",
+  })),
+);
+export const channel: LiveChannel = {
+  id: "channel-demo",
+  cityId: city.id,
+  provider: "demo",
+  publicStatus: "demo",
+  embedUrl: null,
+};
+export const companies: Company[] = [
+  "Mercado da Praça (fictício)",
+  "Ateliê Raízes (fictício)",
+  "Cooperativa Horizonte (fictícia)",
+].map((name, i) => ({
+  id: `company-${i}`,
+  cityId: city.id,
+  name,
+  slug: `empresa-demo-${i}`,
+}));
+export const jobs: Job[] = [
+  {
+    id: "job-1",
+    cityId: city.id,
+    companyId: "company-0",
+    companyName: "Mercado da Praça",
+    slug: "atendente-demo",
+    title: "Atendente de loja",
+    description:
+      "Exemplo de oportunidade para atendimento ao público, suporte aos clientes e organização da loja. Esta vaga não existe e não recebe candidaturas.",
+    requirements: ["Comunicação clara", "Disponibilidade no turno da tarde", "Ensino Médio completo"],
+    area: "Comércio",
+    employmentType: "CLT",
+    workMode: "Presencial",
+    locationText: "Centro • Viamão/RS",
+    salary: "R$ 1.850 a R$ 2.150",
+    publishedAt: "2026-10-10T12:00:00Z",
+    expiresAt: "2026-11-12T23:59:59-03:00",
+    applicationUrl: null,
+    status: "published",
+  },
+  {
+    id: "job-2",
+    cityId: city.id,
+    companyId: "company-1",
+    companyName: "Ateliê Raízes",
+    slug: "assistente-administrativo-demo",
+    title: "Assistente administrativo",
+    description:
+      "Apoio operacional à organização de documentos, fluxo de caixa e rotinas administrativas do negócio.",
+    requirements: ["Organização", "Conhecimentos básicos de planilhas", "Boa redação"],
+    area: "Administrativo",
+    employmentType: "CLT",
+    workMode: "Híbrido",
+    locationText: "Santa Isabel • Viamão/RS",
+    salary: "R$ 2.300 a R$ 2.700",
+    publishedAt: "2026-10-09T12:00:00Z",
+    expiresAt: "2026-11-12T23:59:59-03:00",
+    applicationUrl: null,
+    status: "published",
+  },
+  {
+    id: "job-3",
+    cityId: city.id,
+    companyId: "company-2",
+    companyName: "Cooperativa Horizonte",
+    slug: "auxiliar-logistica-demo",
+    title: "Auxiliar de logística",
+    description:
+      "Suporte à conferência de materiais, movimentação de estoque e expedição de produtos locais.",
+    requirements: ["Atenção aos detalhes", "Trabalho em equipe", "Disponibilidade para início imediato"],
+    area: "Logística",
+    employmentType: "Temporário",
+    workMode: "Presencial",
+    locationText: "Viamópolis • Viamão/RS",
+    salary: "R$ 1.950 a R$ 2.250",
+    publishedAt: "2026-10-08T12:00:00Z",
+    expiresAt: "2026-11-12T23:59:59-03:00",
+    applicationUrl: null,
+    status: "published",
+  },
+];
+export const articles: Article[] = [
+  {
+    id: "article-1",
+    cityId: city.id,
+    slug: "um-olhar-para-a-cidade",
+    title: "Um novo olhar para a nossa cidade",
+    excerpt: "Conheça a proposta editorial deste portal em desenvolvimento.",
+    body: "Este é um texto demonstrativo, sem apuração jornalística. O portal nasce com a proposta de aproximar histórias, cultura e serviços de quem vive em Viamão. Na próxima etapa, conteúdos reais dependerão de equipe editorial, revisão e autorização dos titulares. As imagens desta versão são ilustrações originais, e todos os programas e vagas são fictícios.",
+    coverPath: "/art/city.svg",
+    publishedAt: "2026-10-12T12:00:00Z",
+    status: "published",
+  },
+];
