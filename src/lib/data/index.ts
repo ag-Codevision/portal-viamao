@@ -14,8 +14,12 @@ export {
   searchInternetArchivePublicDomain,
   searchWikimediaCommonsVideos,
 } from "./open-video-repository";
-// Ponto único de composição: substituir por um adapter Supabase no servidor na Etapa 2.
+import { jobsStore } from "./jobs-mock-store";
+export { jobsStore };
+export { initialCompanies, initialJobs, initialApplications } from "./jobs-mock-store";
+
 const repository = mockRepository;
+
 export const {
   getCity,
   listPrograms,
@@ -30,6 +34,7 @@ export const {
   listArticles,
   getArticle,
 } = repository;
+
 export async function getHomeFeed(citySlug = siteConfig.citySlug) {
   return {
     programs: await listPrograms({ citySlug }),

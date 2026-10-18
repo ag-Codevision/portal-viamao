@@ -204,7 +204,7 @@ export function HeroSlider({ slides = HERO_SLIDES }: { slides?: HeroSlideData[] 
       {/* Conteúdo textual do Slide Ativo */}
       <div className="hero-content container" key={currentSlide.id}>
         <p className="eyebrow hero-fade-item">
-          <span className="gold-line" /> {currentSlide.eyebrow}
+          <span className="brand-line" /> {currentSlide.eyebrow}
         </p>
 
         <h1 className="hero-fade-item">
@@ -224,12 +224,12 @@ export function HeroSlider({ slides = HERO_SLIDES }: { slides?: HeroSlideData[] 
         </p>
 
         <div className="hero-buttons hero-fade-item">
-          <ButtonLink href={currentSlide.watchHref}>
-            <Play size={17} fill="currentColor" /> Assistir agora
-          </ButtonLink>
-          <ButtonLink href={currentSlide.detailsHref} variant="secondary">
+          <Link href={currentSlide.watchHref} className="button button-hero-play">
+            <Play size={18} fill="currentColor" /> Assistir agora
+          </Link>
+          <Link href={currentSlide.detailsHref} className="button button-hero-info">
             Ver detalhes <ArrowRight size={17} />
-          </ButtonLink>
+          </Link>
         </div>
 
         <p className="hero-caption hero-fade-item">

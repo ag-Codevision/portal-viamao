@@ -41,8 +41,8 @@ export default async function Home() {
             <span className="eyebrow">TV LOCAL DE VIAMÃO</span>
             <p>Permanece em demonstração</p>
           </div>
-          <ButtonLink variant="secondary" href="/ao-vivo">
-            <Play size={16} /> Explorar canais
+          <ButtonLink variant="default" href="/ao-vivo">
+            <Play size={16} fill="currentColor" /> Explorar canais
           </ButtonLink>
         </section>
         <section className="home-section">

@@ -95,7 +95,7 @@ export function ExternalPlayer({
           )
         ) : (
           <div className="external-player-placeholder">
-            <AlertCircle size={36} className="text-amber-400" aria-hidden="true" />
+            <AlertCircle size={36} className="text-red-500" aria-hidden="true" />
             <p className="eyebrow">{provider} · SINAL TEMPORARIAMENTE INDISPONÍVEL</p>
             <h2>{title}</h2>
             <p>

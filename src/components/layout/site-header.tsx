@@ -15,14 +15,26 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 25);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     if (open) dialog.current?.showModal();
     else dialog.current?.close();
   }, [open]);
+
   return (
-    <header className="site-header">
+    <header className={`site-header ${isScrolled ? "scrolled" : ""}`}>
       <div className="header-inner">
         <Link
           href="/"
@@ -63,7 +75,8 @@ export function SiteHeader() {
             <Search size={20} />
           </Link>
           <Link href="/ao-vivo" className="header-live">
-            <Play size={14} /> Assistir à TV
+            <span className="live-dot-pulse" aria-hidden="true" />
+            <Play size={13} fill="currentColor" /> Assistir à TV
           </Link>
           <button
             ref={toggle}

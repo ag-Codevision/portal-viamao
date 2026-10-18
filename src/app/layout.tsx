@@ -11,8 +11,12 @@ export const metadata: Metadata = {
     "Protótipo da TV local de Viamão: programas, cultura e oportunidades com dados demonstrativos.",
   robots: { index: false, follow: false },
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 export default function RootLayout({
