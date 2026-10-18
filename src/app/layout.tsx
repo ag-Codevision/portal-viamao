@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
 import "./globals.css";
+
 export const metadata: Metadata = {
   title: {
     default: "Viamão • Portal | Histórias que aproximam",
@@ -19,6 +21,7 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
 };
+
 export default function RootLayout({
   children,
 }: {
@@ -33,6 +36,7 @@ export default function RootLayout({
         <SiteHeader />
         <main id="conteudo">{children}</main>
         <SiteFooter />
+        <MobileBottomNav />
       </body>
     </html>
   );

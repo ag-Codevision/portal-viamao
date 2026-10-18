@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Play, ArrowRight, MapPin, ChevronLeft, ChevronRight, Pause } from "lucide-react";
+import { Play, ArrowRight, MapPin, ChevronLeft, ChevronRight, Pause, Info } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 
 export interface HeroSlideData {
@@ -228,7 +228,9 @@ export function HeroSlider({ slides = HERO_SLIDES }: { slides?: HeroSlideData[] 
             <Play size={18} fill="currentColor" /> Assistir agora
           </Link>
           <Link href={currentSlide.detailsHref} className="button button-hero-info">
-            Ver detalhes <ArrowRight size={17} />
+            <Info size={18} className="hero-info-icon" />
+            <span className="hero-info-text">Ver detalhes</span>
+            <ArrowRight size={17} className="hero-info-arrow" />
           </Link>
         </div>
 
@@ -297,6 +299,25 @@ export function HeroSlider({ slides = HERO_SLIDES }: { slides?: HeroSlideData[] 
             <i />
           </div>
         </div>
+      </div>
+
+      {/* Indicadores de Slide Dedicados para Mobile estilo Stories/Streaming */}
+      <div className="hero-mobile-dots" role="tablist" aria-label="Indicadores dos slides no mobile">
+        {slides.map((slide, idx) => {
+          const isActive = idx === currentIndex;
+          return (
+            <button
+              key={slide.id}
+              role="tab"
+              aria-selected={isActive}
+              aria-label={`Slide ${idx + 1}: ${slide.titleMain}`}
+              className={`hero-mobile-dot ${isActive ? "active" : ""}`}
+              onClick={() => goToSlide(idx)}
+            >
+              <span className="hero-mobile-dot-bar" aria-hidden="true" />
+            </button>
+          );
+        })}
       </div>
     </section>
   );

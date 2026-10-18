@@ -8,6 +8,7 @@
   --text-muted: #aaaaaa;
   --line: rgba(255, 255, 255, 0.12);
   --brand: #e50914;
+  --brand-text: #ff4d52;
   --brand-hover: #b81d24;
   --brand-glow: rgba(229, 9, 20, 0.45);
   --live: #e50914;
@@ -118,7 +119,7 @@ svg {
   font-weight: 600;
   letter-spacing: 0.16em;
   line-height: 1.6;
-  color: var(--brand);
+  color: var(--brand-text);
   text-transform: uppercase;
   margin-bottom: 14px;
 }
@@ -607,8 +608,7 @@ svg {
 
 @keyframes heroItemFadeIn {
   from {
-    opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -793,7 +793,7 @@ svg {
   align-items: center;
   font-size: 10px;
   letter-spacing: 0.12em;
-  color: var(--brand);
+  color: var(--brand-text);
   padding: 16px 0 24px;
 }
 .demo-notice span {
@@ -814,7 +814,7 @@ svg {
   display: flex;
   gap: 16px;
   align-items: center;
-  color: var(--brand);
+  color: var(--brand-text);
   padding-right: 26px;
   border-right: 1px solid var(--line);
   font-size: 10px;
@@ -833,7 +833,7 @@ svg {
 }
 .live-strip .eyebrow {
   font-size: 10px;
-  color: var(--brand);
+  color: var(--brand-text);
   margin-bottom: 8px;
 }
 .up-next {
@@ -1019,7 +1019,7 @@ svg {
   transform: scale(1);
 }
 .card-category {
-  color: var(--brand);
+  color: var(--brand-text);
   font-size: 10px;
   letter-spacing: 0.12em;
   font-weight: 700;
@@ -1603,7 +1603,7 @@ textarea[aria-invalid="true"] {
   left: 24px;
   font-size: 10px;
   letter-spacing: 0.14em;
-  color: var(--brand);
+  color: var(--brand-text);
   background: var(--surface);
   border: 1px solid var(--line);
   padding: 6px 10px;
@@ -2024,7 +2024,7 @@ textarea[aria-invalid="true"] {
   gap: 8px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--brand);
+  color: var(--brand-text);
   text-decoration: none;
   margin-bottom: 24px;
   transition: opacity 0.18s;
@@ -2810,7 +2810,7 @@ time,
   color: var(--text-muted);
 }
 .external-player-placeholder .eyebrow {
-  color: var(--brand);
+  color: var(--brand-text);
 }
 .external-player-support {
   display: flex;
@@ -2924,9 +2924,9 @@ time,
 }
 .channel-count-chip {
   font-size: 11.5px;
-  color: var(--brand);
-  background: rgba(215, 168, 93, 0.12);
-  border: 1px solid rgba(215, 168, 93, 0.25);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 3px 8px;
   border-radius: 12px;
   font-weight: 600;
@@ -2956,8 +2956,8 @@ time,
   border-color: rgba(215, 168, 93, 0.4);
 }
 .pill-btn.active {
-  background: rgba(215, 168, 93, 0.18);
-  color: var(--brand);
+  background: var(--brand);
+  color: #ffffff;
   border-color: var(--brand);
 }
 
@@ -3102,8 +3102,9 @@ time,
   font-size: 11px;
   padding: 3px 8px;
   border-radius: 12px;
-  background: rgba(215, 168, 93, 0.15);
-  color: var(--brand);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   font-weight: 600;
 }
 .current-channel-location {
@@ -3309,7 +3310,7 @@ time,
   font-size: 11px;
   font-weight: 700;
   color: #fff;
-  background: #e14545;
+  background: #b81d24;
   padding: 3px 8px;
   border-radius: 10px;
   letter-spacing: 0.04em;
@@ -3428,8 +3429,9 @@ time,
   display: inline-block;
 }
 .job-badge-pill.badge-paused {
-  background: rgba(215, 168, 93, 0.15);
-  color: var(--brand);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(215, 168, 93, 0.35);
 }
 .status-dot-paused {
@@ -4636,8 +4638,9 @@ time,
   font-size: 12px;
 }
 .material-badge.active {
-  background: rgba(215, 168, 93, 0.15);
-  color: var(--brand);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(215, 168, 93, 0.3);
 }
 .material-badge.disabled {
@@ -4910,7 +4913,7 @@ time,
 
 .filter-apply-btn-v2 {
   background: var(--brand);
-  color: #0b0f17;
+  color: #ffffff;
   font-weight: 700;
   border: none;
   border-radius: 10px;
@@ -4973,7 +4976,641 @@ time,
 .filter-quick-pill.active {
   background: var(--brand);
   border-color: var(--brand);
-  color: #0b0f17;
+  color: #ffffff;
   font-weight: 700;
 }
 
+
+/* ==========================================================================
+   MOBILE STREAMING APP EXPERIENCE (ESTILO APLICATIVO NETFLIX)
+   ========================================================================== */
+
+/* Barra de Navegação Inferior Fixa (Bottom Navigation Bar) */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(18, 18, 18, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: max(6px, env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.7);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.mobile-bottom-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 56px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  gap: 3px;
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: color 0.18s ease, transform 0.18s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav-item:active {
+  transform: scale(0.92);
+}
+
+.mobile-nav-item.active {
+  color: #ffffff;
+}
+
+.mobile-nav-item.active .mobile-nav-icon-wrap {
+  color: var(--brand);
+}
+
+.mobile-nav-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 24px;
+  transition: color 0.18s ease;
+}
+
+.mobile-nav-live-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 8px var(--brand);
+  animation: livePulse 1.4s infinite ease-in-out;
+}
+
+.mobile-nav-label {
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Pílulas de Navegação por Categorias Rápidas no Topo */
+.mobile-pills-bar {
+  display: none;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.mobile-pills-scroll {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  padding: 8px 16px 10px;
+  margin: 0;
+}
+
+.mobile-pills-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e5e5e5;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+  scroll-snap-align: start;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-decoration: none;
+}
+
+.mobile-pill:active {
+  transform: scale(0.95);
+}
+
+.mobile-pill.selected {
+  background: #ffffff;
+  color: #141414;
+  border-color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.mobile-pill-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 6px var(--brand);
+  animation: livePulse 1.4s infinite ease-in-out;
+}
+
+/* Indicadores de Slide Mobile (Dots estilo Stories) */
+.hero-mobile-dots {
+  display: none;
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.hero-mobile-dot {
+  pointer-events: auto;
+  border: none;
+  background: transparent;
+  padding: 0;
+  min-width: 28px;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hero-mobile-dot-bar {
+  display: block;
+  height: 3px;
+  width: 10px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  transition: all 0.25s ease;
+}
+
+.hero-mobile-dot.active .hero-mobile-dot-bar {
+  width: 24px;
+  background: var(--brand);
+  box-shadow: 0 0 8px rgba(229, 9, 20, 0.6);
+}
+
+.hero-info-icon {
+  display: none;
+}
+
+/* Quick Info Sheet (Gaveta Inferior Estilo Netflix Preview) */
+.quick-info-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  animation: fadeInQuick 0.22s ease-out forwards;
+}
+
+@keyframes fadeInQuick {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.quick-info-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  background: #181818;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
+  max-height: 85svh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUpQuick 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+}
+
+@keyframes slideUpQuick {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.quick-info-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 10px auto 4px;
+  flex-shrink: 0;
+}
+
+.quick-info-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 220px;
+  background: #000;
+  overflow: hidden;
+}
+
+.quick-info-img {
+  object-fit: cover;
+}
+
+.quick-info-media-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, transparent 40%, #181818 100%);
+  pointer-events: none;
+}
+
+.quick-info-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.quick-info-close:hover {
+  background: rgba(229, 9, 20, 0.85);
+}
+
+.quick-info-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  z-index: 2;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: rgba(229, 9, 20, 0.85);
+  color: #ffffff;
+}
+
+.quick-info-body {
+  padding: 16px 20px 20px;
+  overflow-y: auto;
+}
+
+.quick-info-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+.quick-info-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+
+.quick-info-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #d1d5db;
+  font-weight: 500;
+}
+
+.quick-info-hd-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  line-height: 1;
+}
+
+.quick-info-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.quick-info-btn-play {
+  width: 100%;
+  background: #ffffff;
+  color: #000000;
+  font-weight: 700;
+  font-size: 14px;
+  min-height: 44px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.quick-info-btn-play:hover {
+  background: #e6e6e6;
+  color: #000000;
+}
+
+.quick-info-btn-details {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  min-height: 42px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.quick-info-synopsis {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* Card Wrapper & Gatilho de Informação Rápida */
+.media-card-wrapper {
+  position: relative;
+  display: block;
+}
+
+.card-quick-info-trigger {
+  display: none;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES MÓVEIS ESPECÍFICAS (< 768px e < 640px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Ativação dos componentes de app mobile */
+  .mobile-bottom-nav {
+    display: block;
+  }
+
+  .mobile-pills-bar {
+    display: block;
+  }
+
+  /* Espaçamento inferior no conteúdo principal para não ser coberto pela bottom bar */
+  #conteudo {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Oculta controles de slide desktop no hero e ativa dots mobile */
+  .hero-controls-bar,
+  .hero-nav-btn {
+    display: none !important;
+  }
+
+  .hero-mobile-dots {
+    display: flex;
+  }
+
+  .hero-info-icon {
+    display: inline-block;
+  }
+
+  .hero-info-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  /* Hero em formato Pôster Vertical Imersivo estilo Netflix App */
+  .editorial-hero {
+    height: 74svh;
+    min-height: 520px;
+    max-height: 680px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .hero-slide-backdrop > img {
+    object-position: center 25% !important;
+  }
+
+  .hero-shade-netflix {
+    background:
+      linear-gradient(180deg, rgba(20, 20, 20, 0.15) 0%, rgba(20, 20, 20, 0.45) 50%, var(--bg) 96%),
+      radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.6) 100%) !important;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 34px !important;
+    padding-top: 0 !important;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-content .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.2rem, 7.5vw, 2.9rem) !important;
+    line-height: 1.05;
+    margin-top: 4px !important;
+    margin-bottom: 10px !important;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+  }
+
+  .hero-description {
+    display: none; /* Mantém foco visual limpo nos botões como no app da Netflix */
+  }
+
+  .hero-meta {
+    font-size: 11px !important;
+    color: #e5e5e5;
+    margin-bottom: 16px !important;
+    justify-content: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-buttons {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .hero-buttons .button-hero-play {
+    flex: 1;
+    min-height: 42px;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
+    font-size: 13.5px !important;
+    border-radius: 6px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  }
+
+  .hero-buttons .button-hero-info {
+    flex: 1;
+    min-height: 42px;
+    background: rgba(109, 109, 110, 0.65) !important;
+    color: #ffffff !important;
+    backdrop-filter: blur(8px);
+    border-radius: 6px;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .hero-caption {
+    font-size: 10px;
+    color: #a3a3a3;
+    justify-content: center;
+    margin: 0;
+  }
+
+  /* Trilhos Horizontais de Conteúdo Mobile (Horizontal Peek Rails) */
+  .media-rail {
+    padding: 10px 16px 16px !important;
+    margin-inline: -16px !important;
+    gap: 12px !important;
+    scroll-padding-left: 16px;
+  }
+
+  .media-rail .media-card-wrapper {
+    flex: 0 0 145px !important;
+    min-width: 145px !important;
+    scroll-snap-align: start;
+  }
+
+  .media-card {
+    border-radius: 6px;
+  }
+
+  .card-image {
+    aspect-ratio: 16/10;
+    border-radius: 6px;
+  }
+
+  .media-card-wrapper:active .media-card {
+    transform: scale(0.96);
+  }
+
+  /* Botão de Info Rápida no Mobile Card */
+  .card-quick-info-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 30px;
+    right: 6px;
+    z-index: 4;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.18s ease;
+  }
+
+  .card-quick-info-trigger:active {
+    background: var(--brand);
+    border-color: var(--brand);
+  }
+
+  .card-info h3 {
+    font-size: 0.95rem;
+    line-height: 1.25;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-category {
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+}
+
+.search-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand);
+  color: #ffffff;
+  border: 1px solid var(--brand);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.search-submit-btn:hover {
+  background: var(--brand-hover);
+}

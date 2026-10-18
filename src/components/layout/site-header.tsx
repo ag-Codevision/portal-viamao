@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { MapPin, Menu, Search, X, Play } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { siteConfig } from "@/lib/config";
+import { MobileCategoryPills } from "./mobile-category-pills";
 const links = [
   ["/", "Início"],
   ["/ao-vivo", "Ao vivo"],
@@ -90,6 +91,7 @@ export function SiteHeader() {
           </button>
         </div>
       </div>
+      <MobileCategoryPills />
       <dialog
         ref={dialog}
         id="mobile-menu"

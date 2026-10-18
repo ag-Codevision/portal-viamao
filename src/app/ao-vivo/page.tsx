@@ -35,7 +35,7 @@ export default async function Live({
   ]);
   const selected = value("canal")
     ? await getWorldChannel(value("canal")!)
-    : await getDefaultWorldChannel();
+    : null;
 
   return (
     <div className="container live-page-container">

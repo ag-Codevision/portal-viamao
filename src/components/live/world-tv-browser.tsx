@@ -45,7 +45,7 @@ export function WorldTvBrowser({
   const [filters, setFilters] = useState(initialCatalog.filters);
   const [query, setQuery] = useState(initialCatalog.filters.query);
   const [selected, setSelected] = useState<WorldChannel | null>(
-    initialChannel || initialCatalog.items[0] || null,
+    initialChannel || null,
   );
   const [selection, setSelection] = useState(0);
   const [error, setError] = useState<string | null>(null);
@@ -123,7 +123,7 @@ export function WorldTvBrowser({
         <div className="toolbar-headline">
           <div className="headline-badge">
             <span className="live-dot" aria-hidden="true" />
-            <span className="live-badge-text">TV AO VIVO</span>
+            <h1 className="live-badge-text">TV AO VIVO</h1>
           </div>
           <span className="channel-count-chip">
             {catalog.total.toLocaleString("pt-BR")} canais
@@ -181,7 +181,13 @@ export function WorldTvBrowser({
 
         {/* Campo de Busca e Dropdowns no Topo */}
         <div className="toolbar-filters-group">
-          <div className="search-box-top">
+          <form
+            className="search-box-top"
+            onSubmit={(e) => {
+              e.preventDefault();
+              load({ ...filters, query, page: 1 });
+            }}
+          >
             <Search size={14} className="search-icon" aria-hidden="true" />
             <input
               type="search"
@@ -189,7 +195,7 @@ export function WorldTvBrowser({
               onChange={(e) => handleQueryChange(e.target.value)}
               placeholder="Buscar canal ou cidade…"
               className="top-search-input"
-              aria-label="Buscar canal por nome ou localidade"
+              aria-label="Buscar canal"
             />
             {query && (
               <button
@@ -204,7 +210,14 @@ export function WorldTvBrowser({
                 <X size={13} />
               </button>
             )}
-          </div>
+            <button
+              type="submit"
+              className="search-submit-btn"
+              aria-label="Buscar canais"
+            >
+              Buscar canais
+            </button>
+          </form>
 
           <div className="selects-top-row">
             <select
@@ -389,7 +402,7 @@ export function WorldTvBrowser({
                   return (
                     <button
                       key={channel.id}
-                      className={`channel-item-btn ${isSelected ? "is-selected" : ""}`}
+                      className={`channel-item-btn world-tv-channel ${isSelected ? "is-selected" : ""}`}
                       onClick={() => selectChannel(channel)}
                       aria-pressed={isSelected}
                     >
@@ -402,6 +415,11 @@ export function WorldTvBrowser({
                           {channel.locations[0]?.cityName ??
                             channel.locations[0]?.stateName ??
                             channel.countryName}
+                        </span>
+                        <span className="channel-signal-type">
+                          {channel.playback?.kind === "youtube"
+                            ? "Player YouTube"
+                            : "Sinal oficial"}
                         </span>
                       </span>
 
@@ -446,7 +464,7 @@ export function WorldTvBrowser({
           <div className="picker-pagination">
             <button
               className="icon-button"
-              aria-label="Página anterior"
+              aria-label="Página anterior de canais"
               disabled={pending || catalog.page <= 1}
               onClick={() => load({ ...catalog.filters, page: catalog.page - 1 })}
             >
@@ -457,7 +475,7 @@ export function WorldTvBrowser({
             </span>
             <button
               className="icon-button"
-              aria-label="Próxima página"
+              aria-label="Próxima página de canais"
               disabled={pending || catalog.page >= catalog.pages}
               onClick={() => load({ ...catalog.filters, page: catalog.page + 1 })}
             >

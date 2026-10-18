@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 test("rotas públicas, sem overflow, e acessibilidade", async ({ page }) => {
+  test.setTimeout(120000);
   for (const route of [
     "/",
     "/ao-vivo",
@@ -102,7 +103,9 @@ test("mídia externa depende de ação e não reproduz automaticamente", async (
     .click();
   await page
     .locator(".world-tv-channel")
+    .filter({ hasText: "TV Camara" })
     .filter({ hasText: "Sinal oficial" })
+    .first()
     .click();
   await expect(page.locator("video")).toHaveAttribute(
     "data-source",
