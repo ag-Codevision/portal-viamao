@@ -5,6 +5,7 @@ import { MapPin, Menu, Search, X, Play } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { siteConfig } from "@/lib/config";
 import { MobileCategoryPills } from "./mobile-category-pills";
+
 const links = [
   ["/", "Início"],
   ["/ao-vivo", "Ao vivo"],
@@ -13,16 +14,33 @@ const links = [
   ["/noticias", "Notícias"],
   ["/empregos", "Empregos"],
 ];
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 25);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 25);
+
+      // Auto-hide no mobile apenas quando o menu modal não estiver aberto
+      if (currentScrollY > 80) {
+        if (currentScrollY > lastScrollY.current + 8) {
+          setIsHidden(true);
+        } else if (currentScrollY < lastScrollY.current - 4) {
+          setIsHidden(false);
+        }
+      } else {
+        setIsHidden(false);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -35,7 +53,11 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className={`site-header ${isScrolled ? "scrolled" : ""}`}>
+    <header
+      className={`site-header ${isScrolled ? "scrolled" : ""} ${
+        isHidden && !open ? "header-hidden" : "header-visible"
+      }`}
+    >
       <div className="header-inner">
         <Link
           href="/"

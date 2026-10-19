@@ -6,13 +6,17 @@ import type { Program } from "@/types";
 import { MediaCard } from "./media-card";
 import { QuickInfoSheet, type QuickInfoItem } from "./quick-info-sheet";
 
+export interface MediaRailProps {
+  programs: Program[];
+  label: string;
+  variant?: "default" | "poster" | "top";
+}
+
 export function MediaRail({
   programs,
   label,
-}: {
-  programs: Program[];
-  label: string;
-}) {
+  variant = "default",
+}: MediaRailProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [activeItem, setActiveItem] = useState<QuickInfoItem | null>(null);
 
@@ -44,7 +48,10 @@ export function MediaRail({
 
   return (
     <>
-      <div className="rail-wrapper" aria-label={`Trilho de catálogo: ${label}`}>
+      <div
+        className={`rail-wrapper ${variant === "top" ? "rail-top-wrapper" : ""}`}
+        aria-label={`Trilho de catálogo: ${label}`}
+      >
         <button
           type="button"
           className="rail-arrow rail-arrow-left"
@@ -54,11 +61,19 @@ export function MediaRail({
           <ChevronLeft size={28} />
         </button>
 
-        <div className="media-rail" ref={ref} aria-label={label}>
-          {programs.map((p) => (
+        <div
+          className={`media-rail ${variant === "poster" ? "media-rail-poster" : ""} ${
+            variant === "top" ? "media-rail-top" : ""
+          }`}
+          ref={ref}
+          aria-label={label}
+        >
+          {programs.map((p, index) => (
             <MediaCard
               key={p.id}
               program={p}
+              variant={variant}
+              rank={variant === "top" ? index + 1 : undefined}
               onOpenInfo={handleOpenInfo}
             />
           ))}

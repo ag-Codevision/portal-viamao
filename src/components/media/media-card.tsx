@@ -5,26 +5,51 @@ import Link from "next/link";
 import { Play, Info } from "lucide-react";
 import type { Program } from "@/types";
 
+export interface MediaCardProps {
+  program: Program;
+  onOpenInfo?: (program: Program) => void;
+  variant?: "default" | "poster" | "top";
+  rank?: number;
+}
+
 export function MediaCard({
   program,
   onOpenInfo,
-}: {
-  program: Program;
-  onOpenInfo?: (program: Program) => void;
-}) {
+  variant = "default",
+  rank,
+}: MediaCardProps) {
+  const isPoster = variant === "poster" || variant === "top";
+
   return (
-    <div className="media-card-wrapper">
+    <div
+      className={`media-card-wrapper ${isPoster ? "wrapper-poster" : ""} ${
+        variant === "top" ? "wrapper-top-rank" : ""
+      }`}
+    >
+      {/* Numeral Gigante Estilizado para Top 5 */}
+      {variant === "top" && typeof rank === "number" && (
+        <span className="top-rank-number" aria-hidden="true">
+          {rank}
+        </span>
+      )}
+
       <Link
         href={`/programas/${program.slug}`}
-        className="media-card"
-        aria-label={`${program.title}, ${program.category}, ${program.durationMinutes} minutos`}
+        className={`media-card ${isPoster ? "media-card-poster" : ""}`}
+        aria-label={`${
+          variant === "top" && rank ? `Top ${rank}: ` : ""
+        }${program.title}, ${program.category}, ${program.durationMinutes} minutos`}
       >
-        <div className="card-image">
+        <div className={`card-image ${isPoster ? "card-image-poster" : ""}`}>
           <Image
             src={program.coverPath}
             alt={`Capa cinematográfica de ${program.title}`}
             fill
-            sizes="(max-width: 640px) 44vw, (max-width: 1024px) 40vw, 25vw"
+            sizes={
+              isPoster
+                ? "(max-width: 640px) 38vw, (max-width: 1024px) 25vw, 16vw"
+                : "(max-width: 640px) 46vw, (max-width: 1024px) 40vw, 25vw"
+            }
           />
           <span className="card-play" aria-hidden="true">
             <Play size={16} fill="currentColor" />

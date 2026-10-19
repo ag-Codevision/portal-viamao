@@ -55,6 +55,9 @@ export function MobileBottomNav() {
                 )}
               </div>
               <span className="mobile-nav-label">{item.label}</span>
+              {active && (
+                <span className="mobile-nav-active-pill" aria-hidden="true" />
+              )}
             </Link>
           );
         })}

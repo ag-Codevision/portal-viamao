@@ -48,10 +48,14 @@ export default async function Home() {
         <section className="home-section">
           <SectionHeading
             kicker="SEU LUGAR. SUAS HISTÓRIAS."
-            title="Descubra Viamão"
+            title="Top 5 em Viamão"
             href="/programas"
           />
-          <MediaRail programs={feed.programs} label="Descubra Viamão" />
+          <MediaRail
+            programs={feed.programs.slice(0, 5)}
+            label="Top 5 em Viamão"
+            variant="top"
+          />
         </section>
         <OpenVideoCollection />
         <section className="editorial-feature">
@@ -91,6 +95,7 @@ export default async function Home() {
               (p) => p.category === "Documentários",
             )}
             label="Documentários"
+            variant="poster"
           />
         </section>
         <section className="home-section jobs-preview" aria-labelledby="jobs-home-title">
@@ -127,6 +132,19 @@ export default async function Home() {
             {feed.jobs.map((job) => (
               <JobCard key={job.id} job={job} />
             ))}
+            <Link
+              href="/empregos"
+              className="job-more-card"
+              aria-label="Ver todas as vagas de emprego em Viamão"
+            >
+              <div className="job-more-card-inner">
+                <span className="job-more-icon-wrap" aria-hidden="true">
+                  <ArrowRight size={22} />
+                </span>
+                <strong>Ver todas as vagas</strong>
+                <span>Explore mais de 12 oportunidades locais em Viamão</span>
+              </div>
+            </Link>
           </div>
 
           <div className="jobs-community-callout">

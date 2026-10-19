@@ -5614,3 +5614,191 @@ time,
 .search-submit-btn:hover {
   background: var(--brand-hover);
 }
+
+
+/* ==========================================================================
+   MELHORIAS DE UX/UI MOBILE STREAMING (NETFLIX-INSPIRED)
+   ========================================================================== */
+
+/* Transição do Header para Auto-hide */
+.site-header {
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .site-header.header-hidden {
+    transform: translateY(-100%);
+  }
+  .site-header.header-visible {
+    transform: translateY(0);
+  }
+}
+
+/* Indicador Ativo Luminoso na Bottom Nav */
+.mobile-nav-active-pill {
+  position: absolute;
+  bottom: 2px;
+  width: 14px;
+  height: 3px;
+  border-radius: 9999px;
+  background: var(--brand);
+  box-shadow: 0 0 8px rgba(229, 9, 20, 0.8);
+}
+
+/* Trilho Pôster Vertical (3:4) */
+.media-card-poster .card-image-poster {
+  aspect-ratio: 3/4;
+}
+
+/* Trilho Top 5 com Numerais Gigantes Estilizados */
+.rail-top-wrapper {
+  overflow: visible;
+}
+
+.wrapper-top-rank {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.top-rank-number {
+  position: absolute;
+  left: -8px;
+  bottom: -6px;
+  font-size: 5.6rem;
+  font-weight: 900;
+  line-height: 0.8;
+  color: #141414;
+  -webkit-text-stroke: 3px #525252;
+  text-shadow: 0 4px 14px rgba(0, 0, 0, 0.85);
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-heading, inherit);
+  letter-spacing: -0.06em;
+}
+
+.wrapper-top-rank .media-card {
+  position: relative;
+  z-index: 2;
+  margin-left: 28px;
+}
+
+.wrapper-top-rank:hover .top-rank-number {
+  -webkit-text-stroke-color: var(--brand);
+  color: #1f1f1f;
+  transition: all 0.2s ease;
+}
+
+/* Card Mais Vagas na Home Mobile */
+.job-more-card {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  /* Trilhos Top 5 Mobile */
+  .media-rail-top {
+    padding-left: 20px !important;
+  }
+
+  .media-rail .wrapper-top-rank {
+    flex: 0 0 174px !important;
+    min-width: 174px !important;
+    scroll-snap-align: start;
+  }
+
+  .top-rank-number {
+    font-size: 4.8rem;
+    left: -6px;
+    bottom: -4px;
+    -webkit-text-stroke: 2.5px #737373;
+  }
+
+  .wrapper-top-rank .media-card {
+    margin-left: 26px;
+  }
+
+  /* Trilhos Poster Mobile */
+  .media-rail-poster .media-card-wrapper {
+    flex: 0 0 134px !important;
+    min-width: 134px !important;
+    scroll-snap-align: start;
+  }
+
+  /* Carrossel Horizontal de Vagas de Emprego na Home Mobile */
+  .jobs-preview .job-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding-left: 16px;
+    margin-inline: -16px !important;
+    padding: 8px 16px 16px !important;
+    gap: 12px !important;
+    scrollbar-width: none;
+  }
+
+  .jobs-preview .job-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .jobs-preview .job-grid .job-card {
+    flex: 0 0 280px !important;
+    min-width: 280px !important;
+    scroll-snap-align: start;
+    margin-bottom: 0 !important;
+  }
+
+  .job-more-card {
+    display: flex;
+    flex: 0 0 180px;
+    min-width: 180px;
+    scroll-snap-align: start;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 20px;
+    transition: all 0.2s ease;
+  }
+
+  .job-more-card:active {
+    background: rgba(255, 255, 255, 0.08);
+    transform: scale(0.97);
+  }
+
+  .job-more-card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .job-more-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--brand);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(229, 9, 20, 0.5);
+  }
+
+  .job-more-card strong {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .job-more-card span {
+    font-size: 11px;
+    color: #9ca3af;
+    line-height: 1.35;
+  }
+}
