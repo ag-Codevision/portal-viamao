@@ -8,6 +8,7 @@ import { MediaRail } from "@/components/media/media-rail";
 import { JobCard } from "@/components/jobs/job-card";
 import { OpenVideoCollection } from "@/components/media/open-video-collection";
 import { HeroSlider } from "@/components/media/hero-slider";
+import { CityText } from "@/components/layout/city-text";
 
 export default async function Home() {
   const feed = await getHomeFeed();
@@ -38,7 +39,9 @@ export default async function Home() {
             <p>Escolha canais por país, estado e cidade</p>
           </div>
           <div className="up-next">
-            <span className="eyebrow">TV LOCAL DE VIAMÃO</span>
+            <span className="eyebrow">
+              <CityText prefix="TV LOCAL DE " defaultCity="VIAMÃO" suffix="" />
+            </span>
             <p>Permanece em demonstração</p>
           </div>
           <ButtonLink variant="default" href="/ao-vivo">
@@ -48,7 +51,7 @@ export default async function Home() {
         <section className="home-section">
           <SectionHeading
             kicker="SEU LUGAR. SUAS HISTÓRIAS."
-            title="Top 5 em Viamão"
+            title={<CityText prefix="Top 5 em " defaultCity="Viamão" />}
             href="/programas"
           />
           <MediaRail
@@ -106,7 +109,7 @@ export default async function Home() {
                 SERVIÇOS PARA A COMUNIDADE · GRATUITO
               </span>
               <h2 id="jobs-home-title" className="jobs-section-title">
-                Oportunidades em Viamão
+                <CityText prefix="Oportunidades em " defaultCity="Viamão" />
               </h2>
               <p className="jobs-section-subtitle">
                 Conectando trabalhadores, comércio local e pequenas empresas da nossa cidade. Vagas 100% locais e sem intermediários.
@@ -142,7 +145,7 @@ export default async function Home() {
                   <ArrowRight size={22} />
                 </span>
                 <strong>Ver todas as vagas</strong>
-                <span>Explore mais de 12 oportunidades locais em Viamão</span>
+                <span>Explore oportunidades locais da Região Metropolitana</span>
               </div>
             </Link>
           </div>

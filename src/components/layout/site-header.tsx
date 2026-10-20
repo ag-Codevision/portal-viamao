@@ -7,6 +7,7 @@ import { useRef, useState, useEffect } from "react";
 import { siteConfig } from "@/lib/config";
 import { MobileCategoryPills } from "./mobile-category-pills";
 import { GlobalSearchModal } from "./global-search-modal";
+import { useCity, METRO_CITIES } from "@/lib/context/city-context";
 
 const links = [
   ["/", "Início"],
@@ -17,33 +18,25 @@ const links = [
   ["/empregos", "Oportunidades"],
 ];
 
-const METRO_CITIES = [
-  { slug: "viamao", name: "Viamão, RS" },
-  { slug: "porto-alegre", name: "Porto Alegre, RS" },
-  { slug: "alvorada", name: "Alvorada, RS" },
-  { slug: "cachoeirinha", name: "Cachoeirinha, RS" },
-  { slug: "canoas", name: "Canoas, RS" },
-  { slug: "gravatai", name: "Gravataí, RS" },
-  { slug: "esteio", name: "Esteio, RS" },
-  { slug: "sapucaia", name: "Sapucaia do Sul, RS" },
-  { slug: "sao-leopoldo", name: "São Leopoldo, RS" },
-  { slug: "novo-hamburgo", name: "Novo Hamburgo, RS" },
-  { slug: "guaiba", name: "Guaíba, RS" },
-  { slug: "eldorado", name: "Eldorado do Sul, RS" },
-];
-
 export function SiteHeader() {
   const pathname = usePathname();
+  const { city, setCity } = useCity();
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [selectedCity, setSelectedCity] = useState("viamao");
   const toggle = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const lastScrollY = useRef(0);
 
   const isLivePage = pathname === "/ao-vivo";
+
+  // Sempre que navegar para a página inicial, garante scroll no topo absoluto
+  useEffect(() => {
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,9 +67,10 @@ export function SiteHeader() {
   }, [open]);
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     if (pathname === "/") {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   };
 
@@ -117,15 +111,15 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="header-actions">
-            {/* Seletor de Cidades da Grande Porto Alegre */}
+            {/* Seletor Compacto e Elegante de Cidades da Grande Porto Alegre */}
             <div className="city-selector-wrap" title="Selecionar cidade da Região Metropolitana">
-              <MapPin size={14} className="city-selector-pin" aria-hidden="true" />
+              <MapPin size={12} className="city-selector-pin" aria-hidden="true" />
               <select
                 id="city-select"
                 aria-label="Cidades da Grande Porto Alegre"
                 className="city-selector-dropdown"
-                value={selectedCity}
-                onChange={(e) => setSelectedCity(e.target.value)}
+                value={city.slug}
+                onChange={(e) => setCity(e.target.value)}
               >
                 {METRO_CITIES.map((c) => (
                   <option key={c.slug} value={c.slug}>

@@ -2,15 +2,17 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
+import { CityProvider } from "@/lib/context/city-context";
+import { CityNoticeBanner } from "@/components/layout/city-notice-banner";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Viamão • Portal | Histórias que aproximam",
-    template: "%s | Viamão • Portal",
+    default: "Hub TV • Viamão & Região Metropolitana",
+    template: "%s | Hub TV",
   },
   description:
-    "Protótipo da TV local de Viamão: programas, cultura e oportunidades com dados demonstrativos.",
+    "Hub TV: streaming local, canais ao vivo, filmes de domínio público e oportunidades para a comunidade.",
   robots: { index: false, follow: false },
   icons: {
     icon: [
@@ -33,10 +35,13 @@ export default function RootLayout({
         <a href="#conteudo" className="skip-link">
           Pular para conteúdo
         </a>
-        <SiteHeader />
-        <main id="conteudo">{children}</main>
-        <SiteFooter />
-        <MobileBottomNav />
+        <CityProvider>
+          <SiteHeader />
+          <CityNoticeBanner />
+          <main id="conteudo">{children}</main>
+          <SiteFooter />
+          <MobileBottomNav />
+        </CityProvider>
       </body>
     </html>
   );

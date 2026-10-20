@@ -1,4 +1,6 @@
 import { ButtonLink } from "./button";
+import React from "react";
+
 export function EmptyState({
   title = "Nenhum resultado por aqui",
   description = "Experimente outra busca ou remova os filtros.",
@@ -21,13 +23,14 @@ export function EmptyState({
     </div>
   );
 }
+
 export function SectionHeading({
   title,
   kicker,
   href,
   label = "Explorar tudo",
 }: {
-  title: string;
+  title: string | React.ReactNode;
   kicker?: string;
   href?: string;
   label?: string;
