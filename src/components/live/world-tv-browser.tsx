@@ -9,6 +9,7 @@ import {
   MapPin,
   X,
   Radio,
+  RotateCw,
 } from "lucide-react";
 import { ExternalPlayer } from "@/components/media/external-player";
 import { Button } from "@/components/ui/button";
@@ -327,21 +328,25 @@ export function WorldTvBrowser({
                     }
                     youtube={playback.kind === "youtube"}
                     sources={selected.sources}
+                    hideSupportBar={true}
                   />
                 )}
               </div>
 
-              {/* Informações da emissora logo abaixo do vídeo */}
+              {/* Informações da emissora logo abaixo do vídeo (Card Oficial Unificado) */}
               <div className="channel-under-info">
                 <div className="under-info-main">
                   <div className="under-channel-monogram" aria-hidden="true">
                     {selected.name.slice(0, 2).toUpperCase()}
                   </div>
-                  <div>
+                  <div className="under-channel-meta">
                     <div className="channel-title-row">
                       <h2 className="current-channel-name">{selected.name}</h2>
+                      <span className="live-pill">
+                        <span className="live-dot" aria-hidden="true" /> Ao Vivo
+                      </span>
                       <span className="signal-chip">
-                        {playback.kind === "hls" ? "Sinal HLS Direto" : "YouTube Live"}
+                        {playback.kind === "hls" ? "Sinal HLS" : "YouTube"}
                       </span>
                     </div>
                     <p className="current-channel-location">
@@ -358,9 +363,16 @@ export function WorldTvBrowser({
                   </div>
                 </div>
 
-                <div className="under-info-badges">
-                  <span className="info-tag">Transmissão Direta</span>
-                  <span className="info-tag">Sem Anúncios Externos</span>
+                <div className="under-info-actions">
+                  <button
+                    type="button"
+                    className="reload-signal-btn"
+                    onClick={() => setSelection((v) => v + 1)}
+                    title="Recarregar sinal de transmissão"
+                  >
+                    <RotateCw size={13} aria-hidden="true" />
+                    <span>Recarregar sinal</span>
+                  </button>
                 </div>
               </div>
             </>

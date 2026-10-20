@@ -15,6 +15,7 @@ export function ExternalPlayer({
   muted = false,
   youtube = false,
   sources,
+  hideSupportBar = false,
 }: {
   title: string;
   embedUrl?: string | null;
@@ -28,6 +29,7 @@ export function ExternalPlayer({
   muted?: boolean;
   youtube?: boolean;
   sources?: { kind: "hls" | "youtube"; url: string; quality: string | null }[];
+  hideSupportBar?: boolean;
 }) {
   const [activeSourceIndex, setActiveSourceIndex] = useState(0);
   const [failed, setFailed] = useState(false);
@@ -129,46 +131,48 @@ export function ExternalPlayer({
         )}
       </div>
 
-      <div className="external-player-support">
-        <div className="player-meta-badges">
-          <span className="live-pill">
-            <span className="live-dot" aria-hidden="true" /> AO VIVO NO PORTAL
-          </span>
-          <span className="player-provider-label">
-            {provider} · Transmissão Interna
-          </span>
-          {availableSources.length > 1 && (
-            <div className="stream-selector">
-              <span className="stream-selector-label">Sinais:</span>
-              {availableSources.map((s, idx) => (
-                <button
-                  key={idx}
-                  className={`stream-pill ${activeSourceIndex === idx ? "is-active" : ""}`}
-                  onClick={() => {
-                    setActiveSourceIndex(idx);
-                    setFailed(false);
-                    setAttempt((a) => a + 1);
-                  }}
-                >
-                  Sinal {idx + 1} {s.quality ? `(${s.quality})` : ""}
-                </button>
-              ))}
-            </div>
-          )}
+      {!hideSupportBar && (
+        <div className="external-player-support">
+          <div className="player-meta-badges">
+            <span className="live-pill">
+              <span className="live-dot" aria-hidden="true" /> AO VIVO NO PORTAL
+            </span>
+            <span className="player-provider-label">
+              {provider} · Transmissão Interna
+            </span>
+            {availableSources.length > 1 && (
+              <div className="stream-selector">
+                <span className="stream-selector-label">Sinais:</span>
+                {availableSources.map((s, idx) => (
+                  <button
+                    key={idx}
+                    className={`stream-pill ${activeSourceIndex === idx ? "is-active" : ""}`}
+                    onClick={() => {
+                      setActiveSourceIndex(idx);
+                      setFailed(false);
+                      setAttempt((a) => a + 1);
+                    }}
+                  >
+                    Sinal {idx + 1} {s.quality ? `(${s.quality})` : ""}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="player-utility-buttons">
+            <Button
+              variant="ghost"
+              onClick={() => {
+                setFailed(false);
+                setAttempt((v) => v + 1);
+              }}
+              title="Recarregar sinal de transmissão"
+            >
+              <RotateCw size={14} /> Recarregar sinal
+            </Button>
+          </div>
         </div>
-        <div className="player-utility-buttons">
-          <Button
-            variant="ghost"
-            onClick={() => {
-              setFailed(false);
-              setAttempt((v) => v + 1);
-            }}
-            title="Recarregar sinal de transmissão"
-          >
-            <RotateCw size={14} /> Recarregar sinal
-          </Button>
-        </div>
-      </div>
+      )}
     </section>
   );
 }
