@@ -24,6 +24,8 @@ export function SiteHeader() {
   const dialog = useRef<HTMLDialogElement>(null);
   const lastScrollY = useRef(0);
 
+  const isLivePage = pathname === "/ao-vivo";
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -97,10 +99,12 @@ export function SiteHeader() {
           >
             <Search size={20} />
           </Link>
-          <Link href="/ao-vivo" className="header-live">
-            <span className="live-dot-pulse" aria-hidden="true" />
-            <Play size={13} fill="currentColor" /> Assistir à TV
-          </Link>
+          {!isLivePage && (
+            <Link href="/ao-vivo" className="header-live">
+              <span className="live-dot-pulse" aria-hidden="true" />
+              <Play size={13} fill="currentColor" /> Assistir à TV
+            </Link>
+          )}
           <button
             ref={toggle}
             className="icon-button menu-toggle"

@@ -188,28 +188,30 @@ export function WorldTvBrowser({
               load({ ...filters, query, page: 1 });
             }}
           >
-            <Search size={14} className="search-icon" aria-hidden="true" />
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => handleQueryChange(e.target.value)}
-              placeholder="Buscar canal ou cidade…"
-              className="top-search-input"
-              aria-label="Buscar canal"
-            />
-            {query && (
-              <button
-                type="button"
-                className="clear-search-btn"
-                onClick={() => {
-                  setQuery("");
-                  load({ ...filters, query: "", page: 1 });
-                }}
-                aria-label="Limpar busca"
-              >
-                <X size={13} />
-              </button>
-            )}
+            <div className="search-input-field">
+              <Search size={14} className="search-icon" aria-hidden="true" />
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => handleQueryChange(e.target.value)}
+                placeholder="Buscar canal ou cidade…"
+                className="top-search-input"
+                aria-label="Buscar canal"
+              />
+              {query && (
+                <button
+                  type="button"
+                  className="clear-search-btn"
+                  onClick={() => {
+                    setQuery("");
+                    load({ ...filters, query: "", page: 1 });
+                  }}
+                  aria-label="Limpar busca"
+                >
+                  <X size={13} />
+                </button>
+              )}
+            </div>
             <button
               type="submit"
               className="search-submit-btn"
@@ -296,7 +298,7 @@ export function WorldTvBrowser({
       </header>
 
       {/* 2. GRID PRINCIPAL (VÍDEO HERO NA ESQUERDA + SIDEBAR DEDICADA NA DIREITA) */}
-      <div className="live-main-grid">
+      <div className={`live-main-grid ${selected ? "has-active-channel" : "no-channel-selected"}`}>
         {/* COLUNA HERO DO VÍDEO */}
         <section className="live-video-hero-column" aria-label="Transmissão de vídeo principal">
           {selected && playback ? (
@@ -364,10 +366,10 @@ export function WorldTvBrowser({
             </>
           ) : (
             <div className="external-player-screen external-player-placeholder">
-              <Tv size={48} aria-hidden="true" />
+              <Tv size={36} aria-hidden="true" />
               <p className="eyebrow">PORTAL TV VIAMÃO</p>
               <h2>Escolha um canal para assistir</h2>
-              <p>Clique em qualquer emissora na lista ao lado.</p>
+              <p>Toque em qualquer emissora na lista para sintonizar ao vivo.</p>
             </div>
           )}
         </section>
