@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 export function SiteFooter() {
   return (
     <footer className="site-footer container">
@@ -22,7 +23,7 @@ export function SiteFooter() {
       </div>
       <nav aria-label="Links institucionais">
         {[
-          ["sobre", "Sobre o portal"],
+          ["sobre", "Sobre a Hub TV"],
           ["contato", "Contato"],
           ["privacidade", "Privacidade"],
           ["termos", "Termos"],

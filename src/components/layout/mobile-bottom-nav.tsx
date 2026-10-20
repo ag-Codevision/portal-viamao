@@ -15,16 +15,16 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Início", icon: Home },
   { href: "/ao-vivo", label: "Ao Vivo", icon: Radio, isLive: true },
   { href: "/programas", label: "Programas", icon: Tv },
-  { href: "/programas#busca", label: "Busca", icon: Search },
-  { href: "/empregos", label: "Empregos", icon: Briefcase },
+  { href: "/busca", label: "Busca", icon: Search },
+  { href: "/empregos", label: "Oportunidades", icon: Briefcase },
 ];
 
-export function MobileBottomNav() {
+export function MobileBottomNav({ onOpenSearch }: { onOpenSearch?: () => void }) {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
-    if (href.startsWith("/programas#busca")) return false;
+    if (href.startsWith("/busca")) return pathname === "/busca";
     return pathname.startsWith(href);
   };
 
@@ -37,6 +37,26 @@ export function MobileBottomNav() {
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.href);
+
+          if (item.href === "/busca" && onOpenSearch) {
+            return (
+              <button
+                key={item.href}
+                type="button"
+                className={`mobile-nav-item ${active ? "active" : ""}`}
+                aria-label="Buscar na plataforma"
+                onClick={onOpenSearch}
+              >
+                <div className="mobile-nav-icon-wrap">
+                  <Icon size={21} strokeWidth={active ? 2.5 : 1.9} />
+                </div>
+                <span className="mobile-nav-label">{item.label}</span>
+                {active && (
+                  <span className="mobile-nav-active-pill" aria-hidden="true" />
+                )}
+              </button>
+            );
+          }
 
           return (
             <Link

@@ -15,7 +15,7 @@ const PILLS: CategoryPill[] = [
   { href: "/programas", label: "Programas" },
   { href: "/documentarios", label: "Documentários" },
   { href: "/noticias", label: "Notícias" },
-  { href: "/empregos", label: "Empregos" },
+  { href: "/empregos", label: "Oportunidades" },
 ];
 
 export function MobileCategoryPills() {
